@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Member Register | Membership System</title>
+
+    <link rel="stylesheet" th:href="@{/css/admin-login.css}">
+    <link rel="stylesheet" th:href="@{/css/member-login.css}">
+</head>
+
+<body>
+
+<div class="member-container">
+
+    <!-- Logo -->
+    <div class="member-logo">
+        <div class="member-logo-box">
+            <i data-lucide="smartphone"></i>
+        </div>
+    </div>
+
+    <!-- Title -->
+    <h1 class="member-title">Join Now</h1>
+    <div class="member-subtitle">
+        Become a member and enjoy exclusive benefits
+    </div>
+
+    <!-- Error Message -->
+    <div class="member-error" th:if="${error}" th:text="${error}"></div>
+
+    <!-- Register Form -->
+    <form class="member-form"
+          method="post"
+          th:action="@{/member/register}"
+          autocomplete="on">
+
+        <!-- Full Name -->
+        <label class="member-label">Full Name</label>
+        <input class="member-input"
+               type="text"
+               name="name"
+               placeholder="John Doe"
+               autocomplete="section-member username"
+               readonly
+               onfocus="this.removeAttribute('readonly')"
+               required>
+
+        <!-- Phone -->
+        <label class="member-label">Phone Number</label>
+        <input class="member-input"
+               type="tel"
+               name="phone"
+               placeholder="0123456789"
+               autocomplete="section-member phone"
+               readonly
+               onfocus="this.removeAttribute('readonly')"
+               required>
+
+        <!-- Email -->
+        <label class="member-label">Email</label>
+        <input class="member-input"
+               type="email"
+               name="email"
+               placeholder="you@example.com"
+               autocomplete="section-member email"
+               readonly
+               onfocus="this.removeAttribute('readonly')"
+               required>
+
+        <!-- Password -->
+        <label class="member-label">Password</label>
+        <input class="member-input"
+               type="password"
+               name="password"
+               placeholder="At least 6 characters"
+               autocomplete="section-member password"
+               readonly
+               onfocus="this.removeAttribute('readonly')"
+               required>
+
+        <!-- Confirm Password -->
+        <label class="member-label">Confirm Password</label>
+        <input class="member-input"
+               type="password"
+               name="confirmPassword"
+               placeholder="Re-enter your password"
+               autocomplete="section-member password"
+               readonly
+               onfocus="this.removeAttribute('readonly')"
+               required>
+
+        <!-- Submit -->
+        <button class="member-btn" type="submit">
+            Register as Junior Member
+        </button>
+    </form>
+
+    <!-- Links -->
+    <div class="member-links">
+        Already have an account?
+        <a href="/member/login">Sign in</a>
+    </div>
+
+    <!-- Benefits Box -->
+    <div class="member-demo-box">
+        <strong>New Member Benefits:</strong><br>
+        • Start as Junior Member<br>
+        • Earn points on every purchase<br>
+        • Access exclusive rewards
+    </div>
+
+</div>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+    lucide.createIcons();
+</script>
+
+</body>
+</html>

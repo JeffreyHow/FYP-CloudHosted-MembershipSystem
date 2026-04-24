@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${pageTitle}">Member Portal</title>
+
+    <!-- Member shared CSS -->
+    <link rel="stylesheet" th:href="@{/css/member-layout.css}">
+    <link rel="stylesheet" th:href="@{/css/member-dashboard.css}">
+    <link rel="stylesheet" th:href="@{/css/member-plans.css}">
+    <link rel="stylesheet" th:href="@{/css/member-rewards.css}">
+
+    <!-- Icons / libs -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+
+<!-- ===== Header ===== -->
+<header class="member-header">
+    <div class="member-header-left">
+        <div class="member-avatar">
+            <i data-lucide="user"></i>
+        </div>
+        <div>
+            <h5>Member Portal</h5>
+            <small>
+                Welcome,
+                <span th:text="${memberName}">Our Proud Member</span>
+            </small>
+        </div>
+    </div>
+
+    <form th:action="@{/member/logout}" method="post">
+        <button class="member-logout-btn">
+            <i data-lucide="log-out"></i>
+            Logout
+        </button>
+    </form>
+</header>
+
+<!-- ===== Navigation ===== -->
+<nav class="member-nav">
+    <ul>
+        <li>
+            <a th:href="@{/member/dashboard}"
+               th:classappend="${activePage == 'dashboard'} ? 'active'">
+                <i data-lucide="layout-dashboard"></i>
+                Dashboard
+            </a>
+        </li>
+
+        <li>
+            <a th:href="@{/member/plans}"
+               th:classappend="${activePage == 'plans'} ? 'active'">
+                <i data-lucide="credit-card"></i>
+                Plans
+            </a>
+        </li>
+
+        <li>
+            <a th:href="@{/member/rewards}"
+               th:classappend="${activePage == 'rewards'} ? 'active'">
+                <i data-lucide="gift"></i>
+                Rewards
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<!-- ===== Main Content ===== -->
+<main class="member-content">
+    <div th:replace="${content}"></div>
+</main>
+
+<script>
+    lucide.createIcons();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,183 @@
+<div>
+    <!-- ===== Summary Cards ===== -->
+    <div class="dashboard-cards">
+
+        <!-- Total Members -->
+        <div class="card-shadow summary-card">
+            <div class="card-header">
+                <span>Total Members</span>
+                <span class="icon">👤</span>
+            </div>
+            <div class="card-value" th:text="${totalMembers}">0</div>
+            <div class="card-subtext">
+                <span th:text="${activeMembers}">0</span> active members
+            </div>
+        </div>
+
+        <!-- Senior Members -->
+        <div class="card-shadow summary-card">
+            <div class="card-header">
+                <span>Senior Members</span>
+                <span class="icon">🎖️</span>
+            </div>
+            <div class="card-value" th:text="${seniorMembers}">0</div>
+            <div class="card-subtext">
+                Senior level members
+            </div>
+        </div>
+
+        <!-- Ongoing Activities -->
+        <div class="card-shadow summary-card">
+            <div class="card-header">
+                <span>Ongoing Activities</span>
+                <span class="icon">📈</span>
+            </div>
+            <div class="card-value" th:text="${ongoingActivities}">0</div>
+            <div class="card-subtext">Coming soon</div>
+        </div>
+
+        <!-- Total Points -->
+        <div class="card-shadow summary-card">
+            <div class="card-header">
+                <span>Total Points</span>
+                <span class="icon">⭐</span>
+            </div>
+            <div class="card-value" th:text="${totalPoints}">0</div>
+            <div class="card-subtext">
+                Avg <span th:text="${avgPoints}">0</span> per member
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ================= Charts Row ================= -->
+    <div class="dashboard-charts">
+    <!-- Member Level Distribution -->
+    <div class="card-shadow" style="margin-top: 24px;">
+        <h4>Member Level Distribution</h4>
+        <div class="chart-wrapper">
+            <canvas id="memberLevelChart"></canvas>
+        </div>
+    </div>
+
+    <script th:inline="javascript">
+        const juniorCount = [[${juniorCount}]];
+        const intermediateCount = [[${intermediateCount}]];
+        const seniorCount = [[${seniorCount}]];
+
+        const data = [juniorCount, intermediateCount, seniorCount];
+        const total = data.reduce((a, b) => a + b, 0);
+
+        const ctx = document.getElementById('memberLevelChart');
+
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Junior', 'Intermediate', 'Senior'],
+                datasets: [{
+                    data: data,
+                    backgroundColor: ['#9CA3AF', '#3B82F6', '#8B5CF6']
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    },
+                    datalabels: {
+                        color: '#374151',
+                        font: {
+                            weight: '600',
+                            size: 14
+                        },
+                        formatter: (value) => {
+                            if (total === 0) return '0%';
+                            const percentage = Math.round((value / total) * 100);
+                            return percentage + '%';
+                        }
+                    }
+                }
+            },
+            plugins: [ChartDataLabels]
+        });
+    </script>
+
+    <!-- ================= Bar Chart ================= -->
+    <div class="card-shadow" style="margin-top: 24px;">
+        <h4>Monthly New Members Trend</h4>
+        <canvas id="monthlyChart" height="180"></canvas>
+    </div>
+
+    <script th:inline="javascript">
+        const monthLabels = [[${monthlyLabels}]];
+        const monthValues = [[${monthlyValues}]];
+
+        new Chart(document.getElementById('monthlyChart'), {
+            type: 'bar',
+            data: {
+                labels: monthLabels,
+                datasets: [{
+                    label: 'New Members',
+                    data: monthValues,
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: { stepSize: 1 }
+                    }
+                }
+            }
+        });
+    </script>
+    </div>
+
+    <!-- Top Active Members -->
+    <div class="card-shadow" style="margin-top: 24px;">
+        <h4>Top Active Members (by Points)</h4>
+
+        <div class="top-members-list">
+
+            <div class="top-member"
+                 th:each="member, stat : ${topMembers}">
+
+                <div class="rank">
+                    #<span th:text="${stat.index + 1}">1</span>
+                </div>
+
+                <div class="info">
+                    <div class="name" th:text="${member.name}">Name</div>
+                    <div class="email" th:text="${member.email}">email</div>
+                </div>
+
+                <div class="meta">
+                <span class="badge"
+                      th:text="${member.level}"
+                      th:classappend="
+        ${member.level.name() == 'SENIOR'} ? ' badge-purple' :
+        (${member.level.name() == 'INTERMEDIATE'} ? ' badge-blue' :
+        ' badge-gray')
+      ">
+</span>
+
+
+                    <span class="points"
+                          th:text="${member.points} + ' pts'">
+                </span>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+</div>

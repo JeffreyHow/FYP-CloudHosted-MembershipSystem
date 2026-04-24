@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${pageTitle}">Admin</title>
+
+    <link rel="stylesheet" th:href="@{/css/admin-layout.css}">
+    <link rel="stylesheet" th:href="@{/css/admin-members.css}">
+    <link rel="stylesheet" th:href="@{/css/admin-coupon.css}">
+    <link rel="stylesheet" th:href="@{/css/admin-activities.css}">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+
+<!-- Header -->
+<div class="admin-header">
+    <div>
+        <h5>Membership Management System</h5>
+        <small>
+            Welcome back,
+            <span th:text="${adminName}">Admin User</span>
+        </small>
+    </div>
+
+    <form th:action="@{/admin/logout}" method="post">
+        <button class="admin-logout-btn">Logout</button>
+    </form>
+
+</div>
+
+<!-- Navigation -->
+<nav class="admin-nav">
+    <ul>
+        <li>
+            <a th:href="@{/admin/dashboard}"
+               th:classappend="${activePage == 'overview'} ? 'active'">
+                Overview
+            </a>
+        </li>
+        <li>
+            <a th:href="@{/admin/members}"
+               th:classappend="${activePage == 'members'} ? 'active'">
+                Members
+            </a>
+        </li>
+        <li>
+            <a th:href="@{/admin/coupons}"
+               th:classappend="${activePage == 'coupons'} ? 'active'">
+                Coupons
+            </a>
+        </li>
+        <li>
+            <a th:href="@{/admin/activities}"
+               th:classappend="${activePage == 'activities'} ? 'active'">
+                Activities
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<!-- Content -->
+<div class="admin-content">
+    <div th:replace="${content}"></div>
+</div>
+
+<script>
+    lucide.createIcons();
+</script>
+</body>
+</html>

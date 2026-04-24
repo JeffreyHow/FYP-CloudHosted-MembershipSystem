@@ -1,0 +1,258 @@
+/* ===== Welcome Banner ===== */
+.member-welcome-card {
+    margin-top: 28px;
+
+    height: 132px;
+    padding: 30px 44px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: linear-gradient(90deg, #7c3aed 0%, #ec4899 100%);
+    border-radius: 28px;
+}
+
+.welcome-text {
+    max-width: 72%;
+}
+
+.welcome-text h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 6px;
+}
+
+.welcome-text p {
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 12px;
+}
+
+.member-badge {
+    height: 28px;
+    padding: 0 14px;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+
+    font-size: 12px;
+    font-weight: 600;
+    color: #ffffff;
+
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 999px;
+}
+
+/* Star */
+.welcome-icon {
+    width: 60px;
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(255, 255, 255, 0.28);
+    border-radius: 50%;
+}
+
+.welcome-icon svg {
+    width: 30px;
+    height: 30px;
+    color: #ffffff;
+}
+
+/* ===== Stats ===== */
+.member-stats {
+    margin-top: 28px;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.stat-card {
+    background: #ffffff;
+    padding: 22px 26px;
+    border-radius: 20px;
+
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.stat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    font-size: 14px;
+    font-weight: 500;
+    color: #6b7280;
+    margin-bottom: 16px;
+}
+
+.stat-card h3 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.stat-card small {
+    font-size: 13px;
+    color: #6b7280;
+}
+
+/* icon colors */
+.stat-card:nth-child(1) svg { color: #f59e0b; }
+.stat-card:nth-child(2) svg { color: #8b5cf6; }
+.stat-card:nth-child(3) svg { color: #3b82f6; }
+
+/* ===== Subscription ===== */
+.member-subscription {
+    margin-top: 28px;
+    padding: 26px 28px;
+
+    background: #ffffff;
+    border-radius: 24px;
+
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+}
+
+.member-subscription h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.subscription-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.subscription-info a {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.subscription-info p {
+    margin-top: 6px;
+    font-size: 14px;
+    color: #6b7280;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+    .member-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .member-welcome-card {
+        height: auto;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+}
+.subscription-name {
+    color: #2563eb;   /* 蓝色（偏现代 UI） */
+    font-weight: 500; /* 可选 */
+}
+.subscription-status {
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: 12px;
+}
+
+.subscription-status.active {
+    color: #15803d;
+    border: 1px solid #22c55e;
+    background: #ecfdf5;
+}
+
+.subscription-status.inactive {
+    color: #991b1b;
+    border: 1px solid #fca5a5;
+    background: #fef2f2;
+}
+/* ===== Recent Activity Card ===== */
+.recent-activity {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+/* 单条 activity */
+.activity-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+    margin-top: 10px;
+}
+
+.activity-item:not(:last-child) {
+    border-bottom: 1px solid #f1f5f9;
+}
+
+/* 左侧 icon + text */
+.activity-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+/* icon */
+.activity-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+}
+
+/* icon 状态 */
+.activity-icon.success {
+    background: #e7f8ee;
+    color: #16a34a;
+}
+
+.activity-icon.warning {
+    background: #fff3e6;
+    color: #ea580c;
+}
+
+/* 文本 */
+.activity-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #0f172a;
+    margin: 0;
+}
+
+.activity-time {
+    font-size: 12px;
+    color: #64748b;
+}
+
+/* 右侧 points */
+.activity-points {
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.activity-points.positive {
+    color: #16a34a;
+}
+
+.activity-points.negative {
+    color: #dc2626;
+}

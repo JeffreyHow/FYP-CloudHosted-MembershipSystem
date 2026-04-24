@@ -1,0 +1,107 @@
+<div class="plan-page">
+
+    <!-- ================= Title ================= -->
+    <div class="page-header">
+        <h1>Choose Your Plan</h1>
+        <p>
+            Upgrade your membership with a subscription plan to earn more points
+            and unlock exclusive benefits
+        </p>
+    </div>
+
+    <div class="plan-container">
+
+        <div class="plan-card"
+             th:each="plan : ${plans}"
+             th:classappend="${mostPopularPlanType != null
+         and plan.subscriptionType == mostPopularPlanType}
+         ? ' most-popular' : ''">
+
+
+            <span class="badge popular"
+                  th:if="${mostPopularPlanType != null
+              and plan.subscriptionType == mostPopularPlanType}">
+            ⭐ Most Popular
+            </span>
+
+            <h2 th:text="${plan.name}">Plan Name</h2>
+
+            <p class="price">
+                <span th:text="${plan.price}">RM0.00</span>
+                <span th:text="' / per ' + ${plan.period}">/ per period</span>
+            </p>
+
+            <p class="subtitle" th:text="${plan.description}">Description</p>
+
+            <div class="bonus-box">
+                ⭐ <strong>Bonus Points</strong><br>
+                <span th:text="'Get ' + ${plan.points} + ' points upon subscription'">
+                Bonus points
+            </span>
+            </div>
+
+            <ul class="feature-list">
+                <li th:each="f : ${#strings.arraySplit(plan.features, ',')}"
+                    th:text="'✔ ' + ${f}">
+                </li>
+            </ul>
+
+            <!-- ✅ 只判断，不 loop -->
+            <!-- Current Plan -->
+            <button
+                    th:if="${currentPlan != null
+                    and plan.subscriptionType == currentPlan.plan.subscriptionType}"
+                    class="btn-outline btn-current"
+                    disabled>
+                Current Plan
+            </button>
+
+            <!-- Subscribe Now -->
+            <form
+                    th:if="${currentPlan == null
+                    or plan.subscriptionType != currentPlan.plan.subscriptionType}"
+                    th:action="@{/member/subscribe}"
+                    method="post">
+
+                <input type="hidden"
+                       name="planId"
+                       th:value="${plan.subscriptionType}" />
+
+                <button type="submit" class="btn-outline">
+                    Subscribe Now
+                </button>
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================= How Points Work ================= -->
+    <div class="points-section">
+        <h2>How Points Work</h2>
+        <p>Earn points through subscriptions and spending, then redeem them for rewards</p>
+
+        <div class="points-steps">
+            <div class="step">
+                ⭐
+                <h3>Earn Points</h3>
+                <p>Subscribe to plans and make purchases to earn points</p>
+            </div>
+
+            <div class="step">
+                📈
+                <h3>Level Up</h3>
+                <p>Accumulate points to upgrade your membership level</p>
+            </div>
+
+            <div class="step">
+                ✔
+                <h3>Redeem Rewards</h3>
+                <p>Use points to unlock exclusive vouchers and discounts</p>
+            </div>
+        </div>
+    </div>
+
+</div>

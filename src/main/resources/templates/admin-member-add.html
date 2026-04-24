@@ -1,0 +1,111 @@
+<div class="card-shadow">
+
+    <!-- Header -->
+    <div class="card-header">
+        <div>
+            <h4>Add New Member</h4>
+            <p class="text-muted">
+                Fill in the member's basic information
+            </p>
+        </div>
+    </div>
+
+    <!-- Add Form -->
+    <form th:action="@{/admin/members/add}"
+          method="post"
+          th:object="${member}">
+
+        <!-- Global error banner -->
+        <div class="alert alert-error"
+             th:if="${#fields.hasGlobalErrors()}">
+
+            <div class="alert-icon">!</div>
+
+            <div class="alert-content">
+                <div th:each="err : ${#fields.globalErrors()}"
+                     th:text="${err}">
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="form-grid">
+
+            <!-- Name -->
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text"
+                       th:field="*{name}"
+                       placeholder="Enter name"
+                       required>
+            </div>
+
+            <!-- Phone -->
+            <div class="form-group">
+                <label>Phone</label>
+                <input type="text"
+                       th:field="*{phone}"
+                       placeholder="e.g. 0123456789"
+                       pattern="01[0-9]{8,9}"
+                       maxlength="11"
+                       inputmode="numeric"
+                       required>
+                <div class="form-error"
+                     th:if="${#fields.hasErrors('phone')}"
+                     th:errors="*{phone}">
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email"
+                       th:field="*{email}"
+                       placeholder="Enter email">
+                <div class="form-error"
+                     th:if="${#fields.hasErrors('email')}"
+                     th:errors="*{email}">
+                </div>
+            </div>
+
+            <!-- Member Level -->
+            <div class="form-group">
+                <label>Member Level</label>
+                <select th:field="*{level}">
+                    <option th:each="lvl : ${levels}"
+                            th:value="${lvl}"
+                            th:text="${lvl}">
+                    </option>
+                </select>
+            </div>
+
+            <!-- Initial Points -->
+            <div class="form-group">
+                <label>Initial Points</label>
+                <input type="number"
+                       th:field="*{points}"
+                       min="0"
+                       value="0">
+            </div>
+
+        </div>
+
+        <!-- Actions -->
+        <div class="form-actions">
+            <a th:href="@{/admin/members}"
+               class="btn-secondary">
+                Cancel
+            </a>
+
+            <button type="submit"
+                    class="btn-primary"
+                    onclick="this.disabled=true; this.form.submit();">
+                Add Member
+            </button>
+        </div>
+
+        <input type="hidden" th:field="*{joinDate}" />
+    </form>
+
+</div>

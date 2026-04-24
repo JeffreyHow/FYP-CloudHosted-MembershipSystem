@@ -1,0 +1,302 @@
+/* ===============================
+   Global
+================================ */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: linear-gradient(180deg, #faf7ff, #f3f6ff);
+    color: #1f2937;
+}
+
+.plan-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px 80px;
+}
+
+/* ===============================
+   Page Header
+================================ */
+.page-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.page-header h1 {
+    font-size: 34px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.page-header p {
+    font-size: 16px;
+    color: #6b7280;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* ===============================
+   Plan Cards
+================================ */
+.plan-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-bottom: 90px;
+}
+
+.plan-card {
+    position: relative;
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 32px 28px 36px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.plan-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.1);
+}
+
+.plan-card h2 {
+    font-size: 22px;
+    margin-bottom: 12px;
+}
+
+/* ===============================
+   Price
+================================ */
+.price {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 6px 0;
+}
+
+.price span {
+    font-size: 14px;
+    font-weight: 400;
+    color: #6b7280;
+}
+
+/* ===============================
+   Subtitle
+================================ */
+.subtitle {
+    font-size: 14px;
+    color: #6b7280;
+    margin-bottom: 22px;
+}
+
+/* ===============================
+   Bonus Box
+================================ */
+.bonus-box {
+    background: #fff7e6;
+    border: 1px solid #fcd34d;
+    border-radius: 12px;
+    padding: 14px 16px;
+    font-size: 14px;
+    margin-bottom: 22px;
+}
+
+/* ===============================
+   Feature List
+================================ */
+.feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 26px;
+}
+
+.feature-list li {
+    font-size: 14px;
+    padding: 8px 0;
+    border-bottom: 1px dashed #e5e7eb;
+}
+
+.feature-list li:last-child {
+    border-bottom: none;
+}
+
+/* ===============================
+   Buttons
+================================ */
+.btn-outline {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1.8px solid #a855f7;
+    background: transparent;
+    color: #7c3aed;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-outline:hover {
+    background: #7c3aed;
+    color: #ffffff;
+}
+
+.btn-disabled {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    background: #f3f4f6;
+    color: #9ca3af;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: not-allowed;
+}
+
+/* ===============================
+   Popular Plan Styling
+================================ */
+.plan-card.popular {
+    border: 2px solid #a855f7;
+    transform: scale(1.03);
+}
+
+.plan-card.popular:hover {
+    transform: scale(1.05);
+}
+
+/* ===============================
+   Badges
+================================ */
+.badge {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #a855f7;
+    color: #ffffff;
+    padding: 6px 14px;
+    font-size: 13px;
+    border-radius: 999px;
+    font-weight: 600;
+}
+
+.current-tag {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    border: 1.5px solid #22c55e;
+    color: #22c55e;
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-weight: 600;
+}
+
+/* ===============================
+   Points Section
+================================ */
+.points-section {
+    background: linear-gradient(180deg, #eef2ff, #f8fafc);
+    border-radius: 20px;
+    padding: 50px 30px;
+    text-align: center;
+}
+
+.points-section h2 {
+    font-size: 26px;
+    margin-bottom: 10px;
+}
+
+.points-section p {
+    color: #6b7280;
+    margin-bottom: 40px;
+}
+
+/* ===============================
+   Points Steps
+================================ */
+.points-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.step {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 28px 20px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+}
+
+.step h3 {
+    margin-top: 12px;
+    margin-bottom: 8px;
+}
+
+.step p {
+    font-size: 14px;
+    color: #6b7280;
+}
+
+/* ===============================
+   Responsive
+================================ */
+@media (max-width: 1024px) {
+    .plan-container {
+        grid-template-columns: 1fr;
+    }
+
+    .points-steps {
+        grid-template-columns: 1fr;
+    }
+
+    .plan-card.popular {
+        transform: none;
+    }
+}
+/* Current Plan button (disabled style) */
+.btn-current {
+    border: 2px solid #e5e5e5;
+    color: #b5b5b5;
+
+    cursor: not-allowed;
+    pointer-events: none; /* 🔥 彻底不能点 */
+
+    box-shadow: none;
+}
+/* ===== Most Popular badge ===== */
+.badge.popular {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #8b5cf6, #a855f7);
+    color: #fff;
+    padding: 6px 14px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 999px;
+    box-shadow: 0 6px 15px rgba(139, 92, 246, 0.35);
+    z-index: 10;
+}
+.plan-card {
+    position: relative;
+}
+/* ===== Highlight most popular plan ===== */
+.plan-card.most-popular {
+    border: 2px solid #8b5cf6;
+    box-shadow: 0 20px 40px rgba(139, 92, 246, 0.25);
+    transform: translateY(-6px);
+}
+
+/* 可选：hover 更明显 */
+.plan-card.most-popular:hover {
+    transform: translateY(-10px);
+}
+
+

@@ -1,0 +1,123 @@
+<div class="card-shadow">
+
+    <!-- Header -->
+    <div class="card-header">
+        <div>
+            <h4>Create New Activity</h4>
+            <p class="text-muted">
+                Fill in the activity details
+            </p>
+        </div>
+    </div>
+
+    <!-- Create Activity Form -->
+    <form id="activityAddForm"
+          th:action="@{/admin/activities/add}"
+          method="post"
+          th:object="${activity}">
+
+        <div class="form-grid">
+
+            <!-- Activity Title -->
+            <div class="form-group">
+                <label>Activity Title</label>
+                <input type="text"
+                       th:field="*{title}"
+                       placeholder="e.g. Anniversary Celebration"
+                       required>
+            </div>
+
+            <!-- Description -->
+            <div class="form-group">
+                <label>Description</label>
+                <textarea th:field="*{description}"
+                          rows="4"
+                          placeholder="Describe the activity"
+                          required></textarea>
+            </div>
+
+            <!-- Start Date -->
+            <div class="form-group">
+                <label>Start Date</label>
+                <input type="date"
+                       th:field="*{startDate}"
+                       required>
+            </div>
+
+            <!-- End Date -->
+            <div class="form-group">
+                <label>End Date</label>
+                <input type="date"
+                       th:field="*{endDate}"
+                       required>
+            </div>
+
+            <!-- Max Participants -->
+            <div class="form-group">
+                <label>Max Participants</label>
+                <input type="number"
+                       th:field="*{maxParticipants}"
+                       min="0"
+                       value="0">
+            </div>
+
+            <!-- Target Member Levels -->
+            <div class="form-group">
+                <label>Target Member Levels</label>
+
+                <div class="checkbox-group">
+                    <label th:each="level : ${membershipLevels}">
+                        <input type="checkbox"
+                               name="targetLevels"
+                               th:value="${level}"
+                               >
+                        <span th:text="${level}">Level</span>
+                    </label>
+                </div>
+
+                <p id="levelError"
+                   class="form-error"
+                   style="display:none;">
+                    Please select at least one member level.
+                </p>
+            </div>
+
+        </div>
+
+        <!-- Actions -->
+        <div class="form-actions">
+            <a th:href="@{/admin/activities}"
+               class="btn-secondary">
+                Cancel
+            </a>
+
+            <button type="submit"
+                    class="btn-primary">
+                Create Activity
+            </button>
+        </div>
+
+    </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            const form = document.getElementById('activityAddForm');
+
+            form.addEventListener('submit', function (e) {
+
+                const checked = document.querySelectorAll(
+                    'input[name="targetLevels"]:checked'
+                );
+
+                if (checked.length === 0) {
+                    e.preventDefault();
+                    document.getElementById('levelError').style.display = 'block';
+                }
+            });
+
+        });
+    </script>
+
+
+</div>

@@ -1,0 +1,13 @@
+.form-group .form-error {
+    margin-top: 6px;
+    font-size: 13px;
+    color: #dc2626;              /* Tailwind red-600 */
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.form-error::before {
+    content: "⚠";
+    font-size: 14px;
+}

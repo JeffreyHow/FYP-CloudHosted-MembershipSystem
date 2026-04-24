@@ -1,0 +1,83 @@
+<div class="card-shadow">
+
+    <!-- Header -->
+    <div class="card-header">
+        <div>
+            <h4>Confirm Redemption</h4>
+            <p class="text-muted">
+                Review your reward details before redeeming
+            </p>
+        </div>
+    </div>
+
+    <!-- Success Message -->
+    <div class="alert alert-success"
+         th:if="${redeemSuccess}">
+
+        <strong>Redemption Successful!</strong>
+        <p>Your voucher code is ready to use.</p>
+
+        <div class="voucher-box">
+            <input type="text"
+                   th:value="${voucherCode}"
+                   readonly>
+        </div>
+    </div>
+
+    <!-- Redemption Summary -->
+    <div class="form-grid">
+
+        <div class="form-group">
+            <label>Reward</label>
+            <div th:text="${coupon.name}"></div>
+        </div>
+
+        <div class="form-group">
+            <label>Points Cost</label>
+            <div th:text="${coupon.pointsCost + ' pts'}"></div>
+        </div>
+
+        <div class="form-group">
+            <label>Current Balance</label>
+            <div th:text="${currentPoints + ' pts'}"></div>
+        </div>
+
+        <div class="form-group">
+            <label>Balance After</label>
+            <div th:text="${balanceAfter + ' pts'}"></div>
+        </div>
+
+    </div>
+
+    <!-- Actions -->
+    <div class="form-actions"
+         th:unless="${redeemSuccess}">
+
+    <a th:href="@{/member/rewards}"
+           class="btn-secondary">
+            Cancel
+        </a>
+
+        <form th:action="@{/member/rewards/redeem/{id}(id=${coupon.id})}"
+              method="post">
+
+            <button type="submit"
+                    class="btn-primary">
+                Confirm Redemption
+            </button>
+
+        </form>
+    </div>
+
+    <!-- Done -->
+    <div class="form-actions"
+         th:if="${redeemSuccess}">
+
+        <a th:href="@{/member/rewards}"
+           class="btn-primary">
+            Done
+        </a>
+
+    </div>
+
+</div>

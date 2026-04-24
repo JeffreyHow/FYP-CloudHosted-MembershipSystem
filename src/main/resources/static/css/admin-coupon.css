@@ -1,0 +1,15 @@
+/* =========================
+   Coupon Dashboard Layout Fix
+   ========================= */
+
+.coupon .dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.coupon-management-section {
+    margin-top: 16px;
+}
+

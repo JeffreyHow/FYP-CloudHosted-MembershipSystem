@@ -1,0 +1,78 @@
+<div class="card-shadow">
+
+    <!-- Header -->
+    <div class="card-header">
+        <div>
+            <h4>Edit Member</h4>
+            <p class="text-muted">
+                Update member's information
+            </p>
+        </div>
+    </div>
+
+    <!-- Edit Form -->
+    <form th:action="@{/admin/members/edit/{id}(id=${member.id})}"
+          method="post"
+          th:object="${member}">
+
+        <div class="form-grid">
+
+            <!-- Name -->
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text"
+                       th:field="*{name}"
+                       required>
+            </div>
+
+            <!-- Phone -->
+            <div class="form-group">
+                <label>Phone</label>
+                <input type="text"
+                       th:field="*{phone}">
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email"
+                       th:field="*{email}">
+            </div>
+
+            <!-- Level -->
+            <div class="form-group">
+                <label>Member Level</label>
+                <select th:field="*{level}">
+                    <option th:each="lvl : ${levels}"
+                            th:value="${lvl}"
+                            th:text="${lvl}">
+                    </option>
+                </select>
+            </div>
+
+            <!-- Points -->
+            <div class="form-group">
+                <label>Points</label>
+                <input type="number"
+                       th:field="*{points}"
+                       min="0">
+            </div>
+
+        </div>
+
+        <!-- Actions -->
+        <div class="form-actions">
+            <a th:href="@{/admin/members}"
+               class="btn-secondary">
+                Cancel
+            </a>
+
+            <button type="submit"
+                    class="btn-primary">
+                Save Changes
+            </button>
+        </div>
+
+    </form>
+
+</div>

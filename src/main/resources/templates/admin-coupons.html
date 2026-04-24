@@ -1,0 +1,166 @@
+<!-- ===== Summary Cards ===== -->
+<div class="coupon">
+<div class="dashboard-cards">
+
+    <!-- Total Coupons -->
+    <div class="card-shadow summary-card">
+        <div class="card-header">
+            <span>Total Coupons</span>
+            <span class="icon">🎟️</span>
+        </div>
+        <div class="card-value" th:text="${totalCoupons}">0</div>
+        <div class="card-subtext">
+            Total created coupons
+        </div>
+    </div>
+
+    <!-- Total Redemptions -->
+    <div class="card-shadow summary-card">
+        <div class="card-header">
+            <span>Total Redemptions</span>
+            <span class="icon">🏷️</span>
+        </div>
+        <div class="card-value" th:text="${totalRedemptions}">0</div>
+        <div class="card-subtext">
+            Total redeemed coupons
+        </div>
+    </div>
+
+    <!-- Usage Rate -->
+    <div class="card-shadow summary-card">
+        <div class="card-header">
+            <span>Usage Rate</span>
+            <span class="icon">📊</span>
+        </div>
+        <div class="card-value">
+            <span th:text="${usageRate}">0</span>%
+        </div>
+        <div class="card-subtext">
+            Redeemed vs used
+        </div>
+    </div>
+
+</div>
+</div>
+
+<div class="coupon-management-section">
+<div class="card-shadow">
+
+    <!-- Header + Create Coupon Button -->
+    <div class="card-header flex-between">
+        <div>
+            <h4>Coupon Management</h4>
+            <p class="text-muted">
+                Create and manage coupon campaigns
+            </p>
+        </div>
+
+        <a th:href="@{/admin/coupons/add}" class="btn-primary">
+            <i data-lucide="plus"></i>
+            Create Coupon
+        </a>
+    </div>
+
+    <!-- Coupon Table -->
+    <div class="table-responsive">
+        <table class="table member-table">
+
+            <thead>
+            <tr>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Discount</th>
+                <th>Min Purchase</th>
+                <th>Usage</th>
+                <th>Expiry Date</th>
+                <th>Status</th>
+                <th class="text-right">Actions</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="coupon : ${coupons}"
+                th:classappend="${
+        coupon.status.name() != 'ACTIVE'
+    } ? 'row-inactive'">
+
+                <!-- Code -->
+                <td>
+                    <span class="badge badge-gray"
+                          th:text="${coupon.code}">
+                        WELCOME2024
+                    </span>
+                </td>
+
+                <!-- Name -->
+                <td th:text="${coupon.name}">
+                    New Member Welcome Coupon
+                </td>
+
+                <!-- Discount -->
+                <td th:text="${coupon.discountDisplay}">
+                    20%
+                </td>
+
+                <!-- Min Purchase -->
+                <td th:text="${coupon.minPurchase}">
+                    RM100
+                </td>
+
+                <!-- Usage -->
+                <td>
+                    <span th:text="${coupon.usedCount}">356</span>
+                    /
+                    <span th:text="${coupon.usageLimit}">1000</span>
+                </td>
+
+                <!-- Expiry Date -->
+                <td th:text="${#temporals.format(coupon.expiryDate, 'MM/dd/yyyy')}">
+                    12/31/2024
+                </td>
+
+                <!-- Status Badge -->
+                <td>
+                    <span class="badge-outline"
+                          th:classappend="
+                            ${coupon.status.name() == 'ACTIVE'} ?
+                            'badge-success' : 'badge-secondary'"
+                          th:text="${coupon.status}">
+                        Status
+                    </span>
+                </td>
+
+                <!-- Actions -->
+                <td class="text-right actions-cell">
+                    <div class="action-group">
+
+                        <a th:href="@{/admin/coupons/edit/{id}(id=${coupon.id})}"
+                           class="icon-btn"
+                           title="Edit">
+                            <i data-lucide="edit-3"></i>
+                        </a>
+
+                        <form th:action="@{/admin/coupons/delete/{id}(id=${coupon.id})}"
+                              method="post"
+                              style="display:inline;"
+                              onsubmit="return confirm('Deactivate this coupon?');">
+
+                            <button type="submit"
+                                    class="icon-btn danger"
+                                    title="Deactivate">
+                                <i data-lucide="trash-2"></i>
+                            </button>
+
+                        </form>
+
+                    </div>
+                </td>
+
+            </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+</div>
+</div>

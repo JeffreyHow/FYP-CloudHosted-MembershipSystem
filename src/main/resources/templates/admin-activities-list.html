@@ -1,0 +1,175 @@
+<!-- ===== Summary Cards ===== -->
+    <div class="dashboard-cards">
+
+        <!-- Total Activities -->
+        <div class="card-shadow summary-card">
+            <div class="card-header">
+                <span>Total Activities</span>
+                <span class="icon">📅</span>
+            </div>
+            <div class="card-value" th:text="${totalActivities}">0</div>
+            <div class="card-subtext">
+                All activities
+            </div>
+        </div>
+
+        <!-- Ongoing Activities -->
+        <div class="card-shadow summary-card">
+            <div class="card-header">
+                <span>Ongoing</span>
+                <span class="icon">📈</span>
+            </div>
+            <div class="card-value" th:text="${ongoingCount}">0</div>
+            <div class="card-subtext">
+                Currently active
+            </div>
+        </div>
+
+        <!-- Upcoming Activities -->
+        <div class="card-shadow summary-card">
+            <div class="card-header">
+                <span>Upcoming</span>
+                <span class="icon">🗓️</span>
+            </div>
+            <div class="card-value" th:text="${upcomingCount}">0</div>
+            <div class="card-subtext">
+                Not started yet
+            </div>
+        </div>
+
+        <!-- Total Participants -->
+        <div class="card-shadow summary-card">
+            <div class="card-header">
+                <span>Total Participants</span>
+                <span class="icon">👥</span>
+            </div>
+            <div class="card-value" th:text="${totalParticipants}">
+                0
+            </div>
+            <div class="card-subtext">
+                Cumulative participation
+            </div>
+        </div>
+
+    </div>
+
+<!-- ===== Activity Management ===== -->
+<div class="coupon-management-section">
+    <div class="card-shadow">
+
+        <!-- Header + Create Activity Button -->
+        <div class="card-header flex-between">
+            <div>
+                <h4>Activity Management</h4>
+                <p class="text-muted">
+                    Create and manage member activities
+                </p>
+            </div>
+
+            <a th:href="@{/admin/activities/add}" class="btn-primary">
+                <i data-lucide="plus"></i>
+                Create Activity
+            </a>
+        </div>
+
+        <!-- Activity Table -->
+        <div class="table-responsive">
+            <table class="table member-table">
+
+                <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Duration</th>
+                    <th>Participants</th>
+                    <th>Target Members</th>
+                    <th>Status</th>
+                    <th class="text-right">Actions</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="activity : ${activities}">
+                <!-- Title -->
+                    <td th:text="${activity.title}">
+                        Anniversary Celebration
+                    </td>
+
+                    <!-- Description -->
+                    <td th:text="${activity.description}">
+                        Celebrating our 5th anniversary with exclusive offers
+                    </td>
+
+                    <!-- Duration -->
+                    <td>
+                    <span th:text="${#temporals.format(activity.startDate, 'MM/dd/yyyy')}">
+                        11/01/2024
+                    </span>
+                        -
+                        <span th:text="${#temporals.format(activity.endDate, 'MM/dd/yyyy')}">
+                        11/07/2024
+                    </span>
+                    </td>
+
+                    <!-- Participants -->
+                    <td>
+                        <span th:text="${activity.participantCount}">0</span>
+                        /
+                        <span th:text="${activity.maxParticipants}">0</span>
+                    </td>
+
+                    <!-- Target Member Levels -->
+                    <td>
+                    <span th:each="level : ${activity.targetLevels}"
+                          class="badge badge-gray"
+                          th:text="${level}">
+                        Junior
+                    </span>
+                    </td>
+
+                    <!-- Status -->
+                    <td>
+                    <span class="badge-outline"
+                          th:classappend="
+                            ${activity.status.name() == 'ONGOING'} ? 'badge-success' :
+                            (${activity.status.name() == 'UPCOMING'} ? 'badge-primary' :
+                            'badge-secondary')"
+                          th:text="${activity.status}">
+                        Status
+                    </span>
+                    </td>
+
+                    <!-- Actions -->
+                    <td class="text-right actions-cell">
+                        <div class="action-group">
+
+                            <a th:href="@{/admin/activities/edit/{id}(id=${activity.id})}"
+                               class="icon-btn"
+                               title="Edit">
+                                <i data-lucide="edit-3"></i>
+                            </a>
+
+                            <form th:action="@{/admin/activities/delete/{id}(id=${activity.id})}"
+                                  method="post"
+                                  style="display:inline;"
+                                  onsubmit="return confirm('Delete this activity?');">
+
+                                <button type="submit"
+                                        class="icon-btn danger"
+                                        title="Delete">
+                                    <i data-lucide="trash-2"></i>
+                                </button>
+
+                            </form>
+
+                        </div>
+                    </td>
+
+                </tr>
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>
+</div>

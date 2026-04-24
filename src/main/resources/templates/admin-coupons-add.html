@@ -1,0 +1,110 @@
+<div class="card-shadow">
+
+    <!-- Header -->
+    <div class="card-header">
+        <div>
+            <h4>Create New Coupon</h4>
+            <p class="text-muted">
+                Fill in the coupon details
+            </p>
+        </div>
+    </div>
+
+    <!-- Create Coupon Form -->
+    <form th:action="@{/admin/coupons/add}"
+          method="post"
+          th:object="${coupon}">
+
+        <div class="form-grid">
+
+            <!-- Coupon Code -->
+            <div class="form-group">
+                <label>Coupon Code</label>
+                <input type="text"
+                       th:field="*{code}"
+                       placeholder="e.g. WELCOME2024"
+                       required>
+            </div>
+
+            <!-- Coupon Name -->
+            <div class="form-group">
+                <label>Coupon Name</label>
+                <input type="text"
+                       th:field="*{name}"
+                       placeholder="e.g. New Member Welcome"
+                       required>
+            </div>
+
+            <!-- Discount Amount -->
+            <div class="form-group">
+                <label>Discount Amount</label>
+                <input type="number"
+                       th:field="*{discountValue}"
+                       min="0"
+                       required>
+            </div>
+
+            <!-- Discount Type -->
+            <div class="form-group">
+                <label>Discount Type</label>
+                <select th:field="*{discountType}" required>
+                    <option th:each="type : ${discountTypes}"
+                            th:value="${type}"
+                            th:text="${type}">
+                    </option>
+                </select>
+            </div>
+
+            <!-- Minimum Purchase -->
+            <div class="form-group">
+                <label>Minimum Purchase</label>
+                <input type="number"
+                       th:field="*{minPurchase}"
+                       min="0"
+                       required>
+            </div>
+
+            <!-- Usage Limit -->
+            <div class="form-group">
+                <label>Usage Limit</label>
+                <input type="number"
+                       th:field="*{usageLimit}"
+                       min="0"
+                       required>
+            </div>
+
+            <!-- Points Cost -->
+            <div class="form-group">
+                <label>Points Cost</label>
+                <input type="number"
+                       th:field="*{pointsCost}"
+                       min="0"
+                       value="0">
+            </div>
+
+            <!-- Expiry Date -->
+            <div class="form-group">
+                <label>Expiry Date</label>
+                <input type="date"
+                       th:field="*{expiryDate}"
+                       required>
+            </div>
+
+        </div>
+
+        <!-- Actions -->
+        <div class="form-actions">
+            <a th:href="@{/admin/coupons}"
+               class="btn-secondary">
+                Cancel
+            </a>
+
+            <button type="submit"
+                    class="btn-primary">
+                Create Coupon
+            </button>
+        </div>
+
+    </form>
+
+</div>

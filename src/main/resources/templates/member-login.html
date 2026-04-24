@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Member Login | Membership System</title>
+
+    <link rel="stylesheet" th:href="@{/css/admin-login.css}">
+    <link rel="stylesheet" th:href="@{/css/member-login.css}">
+</head>
+
+<body>
+
+<div class="member-container">
+
+    <div class="member-logo">
+        <div class="member-logo-box">
+            <i data-lucide="smartphone"></i>
+        </div>
+    </div>
+
+    <h1 class="member-title">Member Portal</h1>
+    <div class="member-subtitle">Access your membership benefits</div>
+
+    <div class="member-error" th:if="${error}" th:text="${error}"></div>
+
+    <form class="member-form"
+          method="post"
+          action="/member/login"
+          autocomplete="on">
+
+        <label class="member-label">Phone Number</label>
+        <input class="member-input"
+               type="tel"
+               name="phone"
+               placeholder="0123456789"
+               autocomplete="section-member phone"
+               readonly
+               onfocus="this.removeAttribute('readonly')"
+               required>
+
+        <label class="member-label">Password</label>
+        <input class="member-input"
+               type="password"
+               name="password"
+               placeholder="Enter your password"
+               autocomplete="section-member password"
+               readonly
+               onfocus="this.removeAttribute('readonly')"
+               required>
+
+        <button class="member-btn" type="submit">Sign In</button>
+    </form>
+
+    <div class="member-links">
+        Don't have an account?
+        <a href="/member/register">Register here</a><br><br>
+        Are you an admin?
+        <a href="/admin/login">Login as Admin</a>
+    </div>
+
+    <div class="member-demo-box">
+        <strong>Demo Credentials:</strong>
+        Phone: 01131489847<br>
+        Password: member123
+    </div>
+
+</div>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+    lucide.createIcons();
+</script>
+
+</body>
+</html>

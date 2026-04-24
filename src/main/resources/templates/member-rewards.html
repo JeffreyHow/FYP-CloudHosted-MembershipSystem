@@ -1,0 +1,93 @@
+<!-- ===== Points Balance Card ===== -->
+<section class="points-card">
+    <div class="points-card-content">
+        <div class="points-text">
+            <span class="points-label">Your Points Balance</span>
+
+            <h2 class="points-value">
+                <span th:text="${totalPoints}">xxx</span> pts
+            </h2>
+
+            <span class="points-subtext">
+                Available to redeem for rewards
+            </span>
+        </div>
+
+        <div class="points-icon">
+            <i data-lucide="star"></i>
+        </div>
+    </div>
+</section>
+
+<!-- ===== Available Rewards ===== -->
+<section class="rewards-section">
+    <h2 class="section-title">Available Rewards</h2>
+
+    <div class="rewards-grid">
+        <div class="reward-card"
+             th:each="coupon : ${coupons}">
+
+            <!-- Header -->
+            <div class="reward-header">
+                <div class="reward-icon">
+                    <i data-lucide="tag"></i>
+                </div>
+
+                <span class="points-badge"
+                      th:text="${coupon.pointsCost} + ' pts'">
+                    1000 pts
+                </span>
+            </div>
+
+            <!-- Title -->
+            <h3 class="reward-title"
+                th:text="${coupon.name}">
+                10% Discount Voucher
+            </h3>
+
+            <!-- Description -->
+            <p class="reward-description"
+               th:text="${coupon.description}">
+                Get 10% off on your next purchase
+            </p>
+
+            <!-- Details -->
+            <div class="reward-details">
+                <div class="detail-row">
+                    <span>Discount Value</span>
+                    <span th:text="
+                        ${coupon.discountType == 'PERCENTAGE'}
+                        ? ${coupon.discountValue} + '%'
+                        : 'RM' + ${coupon.discountValue}">
+                        10%
+                    </span>
+                </div>
+
+                <div class="detail-row">
+                    <span>Availability</span>
+                    <span th:text="${coupon.usageLimit - coupon.usedCount} + ' left'">
+                        100 left
+                    </span>
+                </div>
+            </div>
+
+            <!-- Progress -->
+            <div class="progress-bar">
+                <div class="progress-fill"
+                     th:style="
+                     'width:' +
+                     ((${coupon.usageLimit - coupon.usedCount} * 100)
+                     / ${coupon.usageLimit}) + '%'">
+                </div>
+            </div>
+
+            <!-- Action -->
+            <a th:href="@{/member/rewards/redeem/confirm/{id}(id=${coupon.id})}"
+               class="redeem-btn">
+                Redeem Now
+            </a>
+
+        </div>
+    </div>
+</section>
+

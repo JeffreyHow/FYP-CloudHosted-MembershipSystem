@@ -1,0 +1,284 @@
+/* ===== Points Balance Card ===== */
+.points-card {
+    background: #fff9e8;
+    border: 1px solid #f5e2a8;
+    border-radius: 14px;
+    padding: 20px 24px;
+    margin-bottom: 28px;
+}
+
+.points-card-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.points-text {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.points-label {
+    font-size: 14px;
+    color: #7a6f47;
+    font-weight: 500;
+}
+
+.points-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0;
+}
+
+.points-subtext {
+    font-size: 13px;
+    color: #6b7280;
+}
+
+.points-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #f59e0b;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.rewards-section {
+    margin-top: 24px;
+}
+
+.section-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.rewards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.reward-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+}
+
+.reward-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.reward-icon {
+    width: 40px;
+    height: 40px;
+    background: #eef2ff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6366f1;
+}
+
+.points-badge {
+    font-size: 13px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid #fb923c;
+    color: #fb923c;
+    font-weight: 600;
+}
+
+.reward-title {
+    margin: 16px 0 6px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.reward-description {
+    font-size: 14px;
+    color: #6b7280;
+    margin-bottom: 14px;
+}
+
+.reward-details {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
+
+.progress-bar {
+    height: 6px;
+    background: #e5e7eb;
+    border-radius: 999px;
+    overflow: hidden;
+    margin-bottom: 16px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #111827;
+}
+
+.redeem-btn {
+    margin-top: auto;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    background: #030712;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.redeem-btn:hover {
+    opacity: 0.9;
+}
+
+/* ===== Card Container ===== */
+.card-shadow {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+/* ===== Header ===== */
+.card-header {
+    margin-bottom: 20px;
+}
+
+.card-header h4 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.card-header .text-muted {
+    margin-top: 4px;
+    font-size: 14px;
+    color: #6b7280;
+}
+
+/* ===== Form Grid ===== */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px 24px;
+    margin-top: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: #6b7280;
+    margin-bottom: 4px;
+}
+
+.form-group div {
+    font-size: 15px;
+    font-weight: 500;
+    color: #111827;
+}
+
+/* ===== Actions ===== */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+/* ===== Buttons ===== */
+.btn-primary {
+    background: #030712;
+    color: #ffffff;
+    padding: 10px 18px;
+    border-radius: 10px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    margin-top: 240px;
+}
+
+.btn-primary:hover {
+    opacity: 0.9;
+}
+
+.btn-secondary {
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    color: #374151;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    margin-top: 240px;
+
+}
+
+/* ===== Alert (Success) ===== */
+.alert {
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.alert-success {
+    background: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    color: #065f46;
+}
+
+/* ===== Voucher Box ===== */
+.voucher-box {
+    margin-top: 12px;
+}
+
+.voucher-box input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px dashed #93c5fd;
+    background: #eff6ff;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    color: #1e3a8a;
+    letter-spacing: 1px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 640px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}

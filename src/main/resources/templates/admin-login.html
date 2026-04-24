@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Login | Membership System</title>
+
+    <link rel="stylesheet" th:href="@{/css/admin-login.css}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="logo">
+        <div class="logo-circle">👤</div>
+    </div>
+
+    <h1>Membership System</h1>
+    <div class="subtitle">Sign in to manage your members</div>
+
+    <div class="error" th:if="${error}" th:text="${error}"></div>
+
+    <form method="post" action="/admin/login" autocomplete="on">
+
+        <label>Email</label>
+        <input class="admin-input" type="email" name="email" placeholder="admin@example.com"
+               autocomplete="section-admin username"
+               readonly
+               onfocus="this.removeAttribute('readonly')"
+               required>
+
+        <label>Password</label>
+        <input class="admin-input" type="password" name="password" placeholder="Enter your password"
+               autocomplete="section-admin current-password"
+               readonly
+               onfocus="this.removeAttribute('readonly')"
+               required>
+
+        <button class="btn" type="submit">Sign In</button>
+    </form>
+
+    <div class="links">
+        Don't have an account? <a href="/admin/register">Register here</a><br><br>
+        Are you a member? <a href="/member/login">Login as Member</a>
+    </div>
+
+    <div class="demo-box">
+        <strong>Demo Credentials:</strong>
+        Email: admin@example.com<br>
+        Password: admin123
+    </div>
+
+</div>
+
+</body>
+</html>

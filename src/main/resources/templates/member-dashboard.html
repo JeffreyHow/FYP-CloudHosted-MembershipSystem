@@ -1,0 +1,187 @@
+<div>
+
+    <!-- ===== Welcome Banner ===== -->
+    <section class="member-welcome-card">
+        <div class="welcome-text">
+            <h2>
+                Welcome back,
+                <span th:text="${memberName}">Our Proud Member</span>!
+            </h2>
+            <p>
+                You're doing great! Keep earning points to unlock more rewards.
+            </p>
+
+            <span class="member-badge"
+                  th:text="'👑 ' + ${memberLevel} + ' MEMBER'">
+                👑 JUNIOR MEMBER
+            </span>
+        </div>
+
+        <div class="welcome-icon">
+            <i data-lucide="star"></i>
+        </div>
+    </section>
+
+    <!-- ===== Stats Cards ===== -->
+    <section class="member-stats">
+        <!-- Total Points -->
+        <div class="stat-card">
+            <div class="stat-header">
+                <span>Total Points</span>
+                <i data-lucide="star"></i>
+            </div>
+
+            <h3 th:text="${totalPoints}">0</h3>
+            <small>Available to redeem</small>
+        </div>
+
+        <!-- Available Vouchers -->
+        <div class="stat-card">
+            <div class="stat-header">
+                <span>Available Vouchers</span>
+                <i data-lucide="gift"></i>
+            </div>
+
+            <h3 th:text="${voucherCount}">5</h3>
+            <small>Ready to use</small>
+        </div>
+
+        <!-- Member Since -->
+        <div class="stat-card">
+            <div class="stat-header">
+                <span>Member Since</span>
+                <i data-lucide="calendar"></i>
+            </div>
+
+            <h3 th:text="${#temporals.format(memberSince, 'dd/MM/yyyy')}">--</h3>
+
+            <small th:if="${memberDays != null}"
+                   th:text="${memberDays + ' days'}">0 days</small>
+
+            <small th:if="${memberDays == null}">
+                0 days
+            </small>
+
+        </div>
+    </section>
+
+    <!-- ===== Subscription Status ===== -->
+    <section class="member-subscription">
+        <h3>Subscription Status</h3>
+
+        <div class="subscription-info">
+            <div>
+                <span class="subscription-name"
+                      th:text="${subscriptionName != null
+          ? subscriptionName + ' Plan'
+          : 'No Plan'}">
+    No Plan
+</span>
+
+
+                <p>
+                    Next billing:
+                    <span th:text="${nextBillingDate != null
+    ? #temporals.format(nextBillingDate, 'd/M/yyyy')
+    : '-'}">
+    -
+</span>
+
+                </p>
+            </div>
+
+            <span th:class="${subscriptionStatus
+        ? 'subscription-status active'
+        : 'subscription-status inactive'}"
+                  th:text="${subscriptionStatus
+        ? 'Active'
+        : 'Inactive'}">
+    Inactive
+</span>
+
+        </div>
+    </section>
+
+    <div class="recent-activity">
+
+        <h3 class="recent-activity-title">Recent Activity</h3>
+        <p class="recent-activity-subtitle">
+            Your latest transactions and rewards
+        </p>
+
+        <!-- Loop 最近 5 条 voucher redemption -->
+        <div th:each="redeem : ${recentRedemptions}"
+             class="activity-item">
+
+            <div class="activity-left">
+                <!-- icon -->
+                <div class="activity-icon warning">🎁</div>
+
+                <!-- text -->
+                <div class="activity-text">
+                    <p class="activity-title"
+                       th:text="'Redeemed ' + ${redeem.coupon.name}">
+                        Redeemed Voucher
+                    </p>
+
+                    <small class="activity-time"
+                           th:text="${#temporals.format(redeem.redeemedAt, 'd MMM yyyy')}">
+                        1 day ago
+                    </small>
+                </div>
+            </div>
+
+            <!-- points -->
+            <div class="activity-points negative"
+                 th:text="'-' + ${redeem.coupon.pointsCost} + ' pts'">
+                -0 pts
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+
+    <!-- ===== Recent Activity =====
+    <section class="member-activity">
+        <h3>Recent Activity</h3>
+        <p class="subtitle">Your latest transactions and rewards</p>
+
+        <ul class="activity-list">
+            <li th:each="activity : ${recentActivities}">
+                <div class="activity-left">
+                    <div class="activity-icon"
+                         th:classappend="${activity.points > 0} ? 'positive' : 'negative'">
+                        <i data-lucide="trending-up"
+                           th:if="${activity.points > 0}"></i>
+                        <i data-lucide="gift"
+                           th:if="${activity.points < 0}"></i>
+                    </div>
+
+                    <div>
+                        <strong th:text="${activity.title}">
+                            Purchased Weekly Plan
+                        </strong>
+                        <small th:text="${activity.timeAgo}">
+                            2 hours ago
+                        </small>
+                    </div>
+                </div>
+
+                <div class="activity-points"
+                     th:classappend="${activity.points > 0} ? 'positive' : 'negative'"
+                     th:text="${activity.points > 0 ? '+' : ''}${activity.points} + ' pts'">
+                    +500 pts
+                </div>
+            </li>
+        </ul>
+    </section>
+    -->
+
+</div>
+
+</body>
+</html>
